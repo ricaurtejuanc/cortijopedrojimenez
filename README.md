@@ -72,10 +72,9 @@ de una temporada a otra, hay que actualizar a mano la tabla y las tarjetas
 correspondientes en `index.html` (sección `id="condiciones"`), en español
 e inglés.
 
-La sección "Disponibilidad" está preparada para incrustar más adelante un
-calendario de Google Calendar público (de solo lectura). Cuando lo
-tengáis listo, se puede añadir un `<iframe>` de Google Calendar en esa
-sección de `index.html`.
+La web es solo informativa: no muestra disponibilidad ni calendario de
+reservas, a petición expresa de la propiedad. Las consultas de fecha se
+gestionan por el formulario de contacto o directamente por teléfono/email.
 
 ## Despliegue (GitHub Pages + dominio propio)
 
