@@ -66,11 +66,11 @@ referencias en `index.html` si añades imágenes nuevas.
 
 ## Pendiente de completar
 
-Este dosier no incluye tarifas ni el texto legal de condiciones/contrato,
-así que la sección "Tarifas y condiciones" se ha dejado con una
-explicación general (presupuesto a medida) en vez de precios o cláusulas
-inventadas. Cuando tengáis el texto definitivo de condiciones/contrato,
-lo sustituimos en esa sección.
+La sección "Tarifas y condiciones" refleja el documento
+`Rates and Conditions 2026`. Cuando cambien los precios o las condiciones
+de una temporada a otra, hay que actualizar a mano la tabla y las tarjetas
+correspondientes en `index.html` (sección `id="condiciones"`), en español
+e inglés.
 
 La sección "Disponibilidad" está preparada para incrustar más adelante un
 calendario de Google Calendar público (de solo lectura). Cuando lo

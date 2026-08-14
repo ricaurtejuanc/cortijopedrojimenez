@@ -577,11 +577,147 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 32px 40px;
   max-width: 760px;
   margin: 0 auto 48px;
   text-align: center;
   box-shadow: var(--shadow-soft);
+}
+
+.rates-block {
+  max-width: 900px;
+  margin: 0 auto 56px;
+}
+
+.rates-block h3 {
+  text-align: center;
+  font-size: 1.15rem;
+  margin-bottom: 18px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  background: var(--color-white);
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  min-width: 480px;
+}
+
+table.data-table th,
+table.data-table td {
+  padding: 13px 18px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+table.data-table thead th {
+  background: var(--color-green);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+table.data-table thead th:first-child {
+  background: var(--color-green);
+}
+
+table.data-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-ink);
+  background: var(--color-bg-alt);
+  white-space: normal;
+}
+
+table.data-table tbody td {
+  color: var(--color-ink-soft);
+}
+
+table.data-table tbody tr:last-child th,
+table.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-note {
+  font-size: 0.82rem;
+  color: var(--color-ink-soft);
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+.include-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto 56px;
+}
+
+.include-card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.include-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.7em;
+}
+
+.include-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.include-card li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.93rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 10px;
+}
+
+.include-card li:last-child { margin-bottom: 0; }
+
+.include-card li::before {
+  content: "✓";
+  color: var(--color-terracotta);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.footnotes {
+  max-width: 900px;
+  margin: 40px auto 0;
+  list-style: none;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  gap: 6px;
+}
+
+.footnotes li {
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+  display: flex;
+  gap: 6px;
+}
+
+.footnotes li span {
+  flex-shrink: 0;
+  font-weight: 600;
 }
 
 .conditions-grid {
