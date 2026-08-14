@@ -170,6 +170,7 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
   gap: 14px;
   text-decoration: none;
   line-height: 1.05;
+  min-width: 0;
 }
 
 .brand-logo {
@@ -363,6 +364,10 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
   gap: 14px;
 }
 
+.stat-grid > * {
+  min-width: 0;
+}
+
 .stat-card {
   background: var(--color-white);
   border: 1px solid var(--color-border);
@@ -395,7 +400,7 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 24px;
 }
 
@@ -633,7 +638,7 @@ table.data-table tbody tr:last-child td {
 
 .include-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 20px;
   max-width: 900px;
   margin: 0 auto 56px;
@@ -692,14 +697,18 @@ table.data-table tbody tr:last-child td {
   gap: 6px;
 }
 
-.footnotes li span {
+.footnotes li span:first-child {
   flex-shrink: 0;
   font-weight: 600;
 }
 
+.footnotes li span:last-child {
+  min-width: 0;
+}
+
 .conditions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: 20px;
 }
 
@@ -744,6 +753,10 @@ table.data-table tbody tr:last-child td {
   padding: 16px 18px;
 }
 
+.contact-person > div {
+  min-width: 0;
+}
+
 .contact-avatar {
   width: 48px;
   height: 48px;
@@ -768,6 +781,7 @@ table.data-table tbody tr:last-child td {
   text-decoration: none;
   color: var(--color-ink-soft);
   display: block;
+  overflow-wrap: anywhere;
 }
 
 .contact-person a:hover { color: var(--color-terracotta); }
@@ -804,6 +818,10 @@ table.data-table tbody tr:last-child td {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+}
+
+.form-row > * {
+  min-width: 0;
 }
 
 .form-field {
@@ -848,6 +866,7 @@ table.data-table tbody tr:last-child td {
   color: var(--color-ink-soft);
   margin-top: 12px;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .form-status {
@@ -909,6 +928,10 @@ table.data-table tbody tr:last-child td {
 
 /* ---------- Responsive ---------- */
 
+.intro-grid > *, .location-grid > *, .contact-grid > * {
+  min-width: 0;
+}
+
 @media (max-width: 960px) {
   .intro-grid, .location-grid, .contact-grid {
     grid-template-columns: 1fr;
@@ -962,4 +985,9 @@ table.data-table tbody tr:last-child td {
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-form { padding: 26px; }
   .footer-bottom { flex-direction: column; }
+}
+
+@media (max-width: 340px) {
+  .brand-sub { display: none; }
+  .brand-logo { height: 36px; }
 }
