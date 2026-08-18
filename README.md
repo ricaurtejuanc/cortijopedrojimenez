@@ -2,7 +2,8 @@
 
 Web informativa del Cortijo Pedro Jiménez, finca para bodas y eventos
 privados en Casares (Málaga). Sitio estático (HTML + CSS + JS, sin
-frameworks ni base de datos), bilingüe (español / inglés).
+frameworks), bilingüe (español / inglés). Usa Supabase únicamente para
+contar visitas y mostrarlas en un panel de administración privado.
 
 ## Ver el sitio en local
 
@@ -17,12 +18,17 @@ python3 -m http.server 8000
 ## Estructura
 
 ```
-index.html              Toda la web (una sola página con secciones)
-assets/css/style.css     Estilos
-assets/js/main.js        Idioma, menú, galería y formulario de contacto
-assets/images/           Fotos (extraídas del dosier del Cortijo)
-CNAME                    Dominio propio para GitHub Pages
-.github/workflows/       Despliegue automático a GitHub Pages
+index.html               Toda la web (una sola página con secciones)
+admin.html                Panel de administración privado (estadísticas de visitas)
+assets/css/style.css      Estilos de la web
+assets/css/admin.css      Estilos del panel de administración
+assets/js/main.js         Idioma, menú, galería y formulario de contacto
+assets/js/track.js        Registra una visita en Supabase en cada carga de página
+assets/js/admin.js        Login y estadísticas del panel de administración
+assets/images/            Fotos (extraídas del dosier del Cortijo)
+robots.txt                Evita que /admin.html aparezca en buscadores
+CNAME                     Dominio propio para GitHub Pages
+.github/workflows/        Despliegue automático a GitHub Pages
 ```
 
 ## Idioma (ES / EN)
@@ -63,6 +69,34 @@ Para añadir o cambiar fotos, sustituye los archivos en esa carpeta
 (mantén nombres similares y un tamaño razonable, idealmente por debajo de
 300–400 KB por foto para que la web cargue rápido) y actualiza las
 referencias en `index.html` si añades imágenes nuevas.
+
+## Panel de administración (estadísticas de visitas)
+
+La web registra automáticamente una visita (página y fecha, sin cookies ni
+datos personales) cada vez que alguien la carga, y las guarda en una base
+de datos de [Supabase](https://supabase.com/) creada solo para este sitio
+(proyecto `cortijo-pedro-jimenez`). El panel para verlas está en
+`/admin.html` (por ejemplo, `https://cortijopedrojimenez.com/admin.html`)
+y muestra visitas de hoy, de los últimos 7 y 30 días, el total histórico y
+un desglose día a día.
+
+Los mensajes del formulario de contacto **no** se guardan aquí — se ven en
+el panel de [Web3Forms](https://web3forms.com/) (ver más arriba).
+
+**Antes de poder entrar al panel, hay que crear tu usuario** (esto se hace
+una sola vez y solo tú puedes hacerlo, la web no tiene ningún formulario
+de registro público):
+
+1. Entra en https://supabase.com/dashboard/project/luiniwczeyzlytairmja
+   con la cuenta de Supabase que ya está conectada.
+2. Ve a **Authentication → Users → Add user → Create new user**.
+3. Escribe el email y la contraseña que quieras usar para entrar al panel
+   (por ejemplo `cortijopedrojimenez@gmail.com` y una contraseña propia), y
+   marca **"Auto Confirm User"** para no tener que verificar el email.
+4. Ya puedes entrar en `/admin.html` con ese email y contraseña.
+
+Al no haber ningún registro público, nadie más puede crear una cuenta ni
+ver las estadísticas aunque encuentre la URL del panel.
 
 ## Pendiente de completar
 
