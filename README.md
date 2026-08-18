@@ -70,18 +70,27 @@ Para añadir o cambiar fotos, sustituye los archivos en esa carpeta
 300–400 KB por foto para que la web cargue rápido) y actualiza las
 referencias en `index.html` si añades imágenes nuevas.
 
-## Panel de administración (estadísticas de visitas)
+## Panel de administración (visitas y mensajes)
 
-La web registra automáticamente una visita (página y fecha, sin cookies ni
-datos personales) cada vez que alguien la carga, y las guarda en una base
-de datos de [Supabase](https://supabase.com/) creada solo para este sitio
-(proyecto `cortijo-pedro-jimenez`). El panel para verlas está en
-`/admin.html` (por ejemplo, `https://cortijopedrojimenez.com/admin.html`)
-y muestra visitas de hoy, de los últimos 7 y 30 días, el total histórico y
-un desglose día a día.
+La web registra automáticamente, en una base de datos de
+[Supabase](https://supabase.com/) creada solo para este sitio (proyecto
+`cortijo-pedro-jimenez`):
 
-Los mensajes del formulario de contacto **no** se guardan aquí — se ven en
-el panel de [Web3Forms](https://web3forms.com/) (ver más arriba).
+- **Una visita** (página y fecha, sin cookies ni datos personales) cada vez
+  que alguien carga la web.
+- **Un envío del formulario de contacto** (solo nombre, email y fecha —
+  nunca el texto del mensaje) cada vez que se manda correctamente por
+  Web3Forms.
+
+El panel está en `/admin.html` (por ejemplo,
+`https://cortijopedrojimenez.com/admin.html`) y muestra, para cada uno de
+los dos: hoy, últimos 7 días, últimos 30 días, total histórico, y un
+desglose día a día.
+
+El contenido de los mensajes (lo que ha escrito cada persona) **no** se
+guarda aquí, para no duplicarlo — se lee en el panel de
+[Web3Forms](https://web3forms.com/) (ver más arriba). El panel propio solo
+sirve para ver cuánta gente visita la web y cuánta llega a escribir.
 
 **Antes de poder entrar al panel, hay que crear tu usuario** (esto se hace
 una sola vez y solo tú puedes hacerlo, la web no tiene ningún formulario

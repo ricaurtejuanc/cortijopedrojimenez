@@ -128,6 +128,21 @@
     missingKey: { es: "El formulario aún no está configurado. Escríbenos directamente a cortijopedrojimenez@gmail.com.", en: "The form isn't configured yet. Please write to us directly at cortijopedrojimenez@gmail.com." }
   };
 
+  function logSubmission(lang) {
+    if (!window.supabase) return;
+    try {
+      var client = window.supabase.createClient(
+        "https://luiniwczeyzlytairmja.supabase.co",
+        "sb_publishable_dECgZYL9Z4KZz4e-4Ueg4Q_NI19u1zv"
+      );
+      client.from("contact_submissions").insert({
+        name: form.querySelector('[name="name"]').value || null,
+        email: form.querySelector('[name="email"]').value || null,
+        lang: lang
+      }).then(function () {}, function () {});
+    } catch (e) {}
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var lang = currentLang();
@@ -155,6 +170,7 @@
         if (data.success) {
           status.textContent = messages.success[lang];
           status.className = "form-status is-success";
+          logSubmission(lang);
           form.reset();
         } else {
           status.textContent = messages.error[lang];

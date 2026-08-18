@@ -5,6 +5,10 @@
   min-height: 100vh;
 }
 
+#loginView[hidden], #dashboardView[hidden] {
+  display: none;
+}
+
 .admin-login {
   min-height: 100vh;
   display: flex;

@@ -73,6 +73,39 @@
     document.getElementById(elId).textContent = count == null ? "—" : count;
   }
 
+  function loadTableStats(table, prefix, todayStart, d7, d30, dailyKey) {
+    client.from(table).select("*", { count: "exact", head: true })
+      .then(function (res) { setCount(prefix + "Total", res.count); });
+
+    client.from(table).select("*", { count: "exact", head: true })
+      .gte("created_at", todayStart.toISOString())
+      .then(function (res) { setCount(prefix + "Today", res.count); });
+
+    client.from(table).select("*", { count: "exact", head: true })
+      .gte("created_at", d7.toISOString())
+      .then(function (res) { setCount(prefix + "7", res.count); });
+
+    client.from(table).select("created_at")
+      .gte("created_at", d30.toISOString())
+      .then(function (res) {
+        var rows = res.data || [];
+        setCount(prefix + "30", rows.length);
+        dailyCounts[dailyKey] = countByDay(rows);
+        renderDailyTable(todayStart);
+      });
+  }
+
+  var dailyCounts = { views: null, messages: null };
+
+  function countByDay(rows) {
+    var counts = {};
+    rows.forEach(function (row) {
+      var key = row.created_at.slice(0, 10);
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    return counts;
+  }
+
   function loadStats() {
     var todayStart = startOfDay(new Date());
 
@@ -82,32 +115,12 @@
     var d30 = new Date(todayStart);
     d30.setDate(d30.getDate() - 29);
 
-    client.from("page_views").select("*", { count: "exact", head: true })
-      .then(function (res) { setCount("statTotal", res.count); });
-
-    client.from("page_views").select("*", { count: "exact", head: true })
-      .gte("created_at", todayStart.toISOString())
-      .then(function (res) { setCount("statToday", res.count); });
-
-    client.from("page_views").select("*", { count: "exact", head: true })
-      .gte("created_at", d7.toISOString())
-      .then(function (res) { setCount("stat7", res.count); });
-
-    client.from("page_views").select("created_at")
-      .gte("created_at", d30.toISOString())
-      .then(function (res) {
-        var rows = res.data || [];
-        setCount("stat30", rows.length);
-        renderDailyTable(rows, todayStart);
-      });
+    loadTableStats("page_views", "stat", todayStart, d7, d30, "views");
+    loadTableStats("contact_submissions", "msg", todayStart, d7, d30, "messages");
   }
 
-  function renderDailyTable(rows, todayStart) {
-    var counts = {};
-    rows.forEach(function (row) {
-      var key = row.created_at.slice(0, 10);
-      counts[key] = (counts[key] || 0) + 1;
-    });
+  function renderDailyTable(todayStart) {
+    if (!dailyCounts.views || !dailyCounts.messages) return;
 
     var tbody = document.getElementById("dailyTableBody");
     tbody.innerHTML = "";
@@ -116,12 +129,19 @@
     for (var i = 0; i < 30; i++) {
       var key = toDateKey(cursor);
       var tr = document.createElement("tr");
+
       var tdDate = document.createElement("td");
       tdDate.textContent = key;
-      var tdCount = document.createElement("td");
-      tdCount.textContent = counts[key] || 0;
+
+      var tdViews = document.createElement("td");
+      tdViews.textContent = dailyCounts.views[key] || 0;
+
+      var tdMsgs = document.createElement("td");
+      tdMsgs.textContent = dailyCounts.messages[key] || 0;
+
       tr.appendChild(tdDate);
-      tr.appendChild(tdCount);
+      tr.appendChild(tdViews);
+      tr.appendChild(tdMsgs);
       tbody.appendChild(tr);
       cursor.setDate(cursor.getDate() - 1);
     }
