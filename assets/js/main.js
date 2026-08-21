@@ -129,17 +129,25 @@
   };
 
   function logSubmission(lang) {
-    if (!window.supabase) return;
+    // Petición directa a la API REST de Supabase con keepalive: true, para
+    // que el registro se complete aunque el visitante cierre la pestaña o
+    // navegue a otra página justo después de ver el mensaje de "Gracias".
     try {
-      var client = window.supabase.createClient(
-        "https://luiniwczeyzlytairmja.supabase.co",
-        "sb_publishable_dECgZYL9Z4KZz4e-4Ueg4Q_NI19u1zv"
-      );
-      client.from("contact_submissions").insert({
-        name: form.querySelector('[name="name"]').value || null,
-        email: form.querySelector('[name="email"]').value || null,
-        lang: lang
-      }).then(function () {}, function () {});
+      fetch("https://luiniwczeyzlytairmja.supabase.co/rest/v1/contact_submissions", {
+        method: "POST",
+        keepalive: true,
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "sb_publishable_dECgZYL9Z4KZz4e-4Ueg4Q_NI19u1zv",
+          "Authorization": "Bearer sb_publishable_dECgZYL9Z4KZz4e-4Ueg4Q_NI19u1zv",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({
+          name: form.querySelector('[name="name"]').value || null,
+          email: form.querySelector('[name="email"]').value || null,
+          lang: lang
+        })
+      }).catch(function () {});
     } catch (e) {}
   }
 
