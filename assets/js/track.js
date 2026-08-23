@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  var SUPABASE_URL = "https://luiniwczeyzlytairmja.supabase.co";
-  var SUPABASE_KEY = "sb_publishable_dECgZYL9Z4KZz4e-4Ueg4Q_NI19u1zv";
+  var SUPABASE_URL = "https://mrejqzsmuqxncupwfezq.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_BQklVUJLRr0_eMf1vfv1CQ_63UH_UNB";
 
   // Petición directa a la API REST de Supabase (no al cliente supabase-js) con
   // keepalive: true, para que el registro se complete aunque el visitante

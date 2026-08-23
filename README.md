@@ -74,7 +74,7 @@ referencias en `index.html` si añades imágenes nuevas.
 
 La web registra automáticamente, en una base de datos de
 [Supabase](https://supabase.com/) creada solo para este sitio (proyecto
-`cortijo-pedro-jimenez`):
+`cortijopedrojimenez_web`):
 
 - **Una visita** (página y fecha, sin cookies ni datos personales) cada vez
   que alguien carga la web.
@@ -96,7 +96,7 @@ sirve para ver cuánta gente visita la web y cuánta llega a escribir.
 una sola vez y solo tú puedes hacerlo, la web no tiene ningún formulario
 de registro público):
 
-1. Entra en https://supabase.com/dashboard/project/luiniwczeyzlytairmja
+1. Entra en https://supabase.com/dashboard/project/mrejqzsmuqxncupwfezq
    con la cuenta de Supabase que ya está conectada.
 2. Ve a **Authentication → Users → Add user → Create new user**.
 3. Escribe el email y la contraseña que quieras usar para entrar al panel

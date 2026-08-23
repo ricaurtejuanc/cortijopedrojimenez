@@ -133,13 +133,13 @@
     // que el registro se complete aunque el visitante cierre la pestaña o
     // navegue a otra página justo después de ver el mensaje de "Gracias".
     try {
-      fetch("https://luiniwczeyzlytairmja.supabase.co/rest/v1/contact_submissions", {
+      fetch("https://mrejqzsmuqxncupwfezq.supabase.co/rest/v1/contact_submissions", {
         method: "POST",
         keepalive: true,
         headers: {
           "Content-Type": "application/json",
-          "apikey": "sb_publishable_dECgZYL9Z4KZz4e-4Ueg4Q_NI19u1zv",
-          "Authorization": "Bearer sb_publishable_dECgZYL9Z4KZz4e-4Ueg4Q_NI19u1zv",
+          "apikey": "sb_publishable_BQklVUJLRr0_eMf1vfv1CQ_63UH_UNB",
+          "Authorization": "Bearer sb_publishable_BQklVUJLRr0_eMf1vfv1CQ_63UH_UNB",
           "Prefer": "return=minimal"
         },
         body: JSON.stringify({
